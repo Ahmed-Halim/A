@@ -9,12 +9,22 @@ using namespace std;
 
 int N , E , u , v , w;
 vector <pair<int, int>> adj[100005];
+int node[100005];
 
-int Dijkstra (int src , int distnation) {
+void Path(int from , int to) {
+    if (to != from)
+        Path(from , node[to]);
+    cout << to << " ";
+}
+
+void Dijkstra (int src , int distnation) {
     priority_queue< pair<int, int>, vector <pair<int, int>> , greater<pair<int, int>> > pq;
-    vector<unsigned int> dist(N+1, INT_MAX);
+    vector<unsigned long long> dist(N+1, LONG_LONG_MAX);
     pq.push({0 , src});
     dist[src] = 0;
+    for(int i=1;i<=N;i++) {
+        node[i] = i;
+    }
     while (!pq.empty()) {
         int u = pq.top().second;
         pq.pop();
@@ -24,10 +34,16 @@ int Dijkstra (int src , int distnation) {
             if (dist[v] > dist[u] + weight) {
                 dist[v] = dist[u] + weight;
                 pq.push({dist[v], v});
+                node[v] = u;
             }
         }
     }
-    return dist[distnation];
+    if (dist[distnation] == LONG_LONG_MAX) {
+        cout << -1 << endl;
+    } else {
+        cout << dist[distnation] << endl;
+        Path(src, distnation);
+    }
 }
 
 int main(){
@@ -42,12 +58,6 @@ int main(){
     }
     
     
-    int Q;
-    cin >> Q;
-    for (int i = 1; i <= Q; i++) {
-        cin >> u >> v;
-        cout << Dijkstra (u , v) << endl;
-    }
-    
+    Dijkstra (1 , N);
     return 0;
 }
