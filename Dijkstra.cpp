@@ -8,7 +8,7 @@ using namespace std;
 #define Fast ios_base::sync_with_stdio(false)
 
 int N , E , u , v , w;
-list <pair<int, int>> *adj;
+vector <pair<int, int>> adj[100005];
 
 int Dijkstra (int src , int distnation) {
     priority_queue< pair<int, int>, vector <pair<int, int>> , greater<pair<int, int>> > pq;
@@ -32,9 +32,8 @@ int Dijkstra (int src , int distnation) {
 
 int main(){
     Fast;
-
+    
     cin >> N >> E;
-    adj = new list <pair <int , int>> [N+1];
     
     for (int i = 0; i < E; i++) {
         cin >> u >> v >> w;
