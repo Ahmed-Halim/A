@@ -1,1 +1,1 @@
-Algorithms used in competitive programming.
+list of algorithms which commonly used in competitive programming.
