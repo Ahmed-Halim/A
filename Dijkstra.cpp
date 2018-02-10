@@ -22,9 +22,6 @@ void Dijkstra (int src , int distnation) {
     vector<unsigned long long> dist(N+1, LONG_LONG_MAX);
     pq.push({0 , src});
     dist[src] = 0;
-    for(int i=1;i<=N;i++) {
-        node[i] = i;
-    }
     while (!pq.empty()) {
         int u = pq.top().second;
         pq.pop();
