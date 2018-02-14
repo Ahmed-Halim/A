@@ -72,28 +72,24 @@ int main() {
             div[temp].push_back(i);
         }
         DisjointSet DS(n);
-        long long sum = 0;
+        long long ans = 0;
         for (int i = Max; i >= 1; i--) {
             int lead = -1;
             for (int j = i; j <= Max ; j += i ) {
-                
-                vector <int> arr = div[j];
-                
-                if (arr.size() > 0 && lead == -1) {
-                    lead = arr[0];
+                if (div[j].size() > 0 && lead == -1) {
+                    lead = div[j][0];
                 }
-                
                 if (lead != -1) {
-                    for (auto x : arr) {
+                    for (auto x : div[j]) {
                         if (!DS.isSameSet(lead , x)) {
                             DS.Union(lead , x);
-                            sum += i;
+                            ans += i;
                         }
                     }
                 }
             }
         }
-        cout << sum << endl;
+        cout << ans << endl;
     }
     
     return 0;
