@@ -19,16 +19,17 @@ int main(){
     for (int i = 0; i < m; i++) {
         cin >> b[i];
     }
-    long long Max = 0 , Index;
+    long long Max = -LONG_LONG_MAX , Index;
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < m; j++) {
             if (a[i]*b[j] > Max) {
-                Max =a[i]*b[j] ;
+                Max = a[i]*b[j] ;
                 Index = i;
             }
         }
     }
-    Max = 0;
+    
+    Max = -LONG_LONG_MAX;
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < m; j++) {
             if (i != Index && a[i]*b[j] > Max) {
