@@ -20,7 +20,8 @@ void dfs (int prevNode , int nextNode , int Level , int Weight) {
         dfs(from , to , Level+1 , w);
     }
     
-    ans = max(ans , Weight);
+    if (Level <= K)
+        ans = max(ans , Weight);
     
     return;
 }
